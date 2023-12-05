@@ -10,6 +10,7 @@
     },
     "rules": {
         "quotes": ["error", "double"],
-        "new-cap": "off"
+        "new-cap": "off",
+        "eslint no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
     }
 }
