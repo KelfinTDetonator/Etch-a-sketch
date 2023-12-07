@@ -30,13 +30,13 @@ html{
 .side{
     flex: 1;
     border-right: 2px solid gray;
+    display: flex;
+    justify-content: center;
 }
-.slidecontainer {
-    width: 100%;
-}
+
 .slider {
     -webkit-appearance: none;
-    width: 70%;
+    width: 100%;
     height: 5px;
     background: #d3d3d3;
     outline: none;
@@ -66,8 +66,8 @@ html{
 .rectangles{
     flex: 2;
     display: grid;
-    grid-template-columns: repeat(var(--grid), 1fr);
-    grid-template-rows: repeat(var(--grid), 1fr);
+    grid-template-columns: repeat(var(--grid), minmax(5px, 1fr));
+    grid-template-rows: repeat(var(--grid), minmax(5px, 1fr));
 }
 .col{
     width: 100%;

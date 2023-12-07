@@ -4,27 +4,43 @@ let totalRectangles;
 
 // slider
 const slider = document.getElementById("rangeSize");
-const output = document.getElementById("output");
+const output = document.querySelectorAll(".output");
+
+slider.value = 24; // base value
+
+output[0].textContent = slider.value;
+output[1].textContent = slider.value;
 
 slider.addEventListener("input", function () {
-  output.textContent = this.value;
+  output[0].textContent = this.value;
+  output[1].textContent = this.value;
 });
-// when there is changes in the input element
-slider.addEventListener("change", function () {
-  const divs = document.querySelectorAll(".col");
-  divs.forEach((div) => { // if there are divs with .col -> remove all elements before the element got appended to the div
-    if (div) { div.remove(); } // reset div
-  });
-  totalRectangles = this.value; // each time there is change in slider, totalRectangles got re-assign
-  root.style.setProperty("--grid", `${totalRectangles}`); // set the value to the css var
-  for (let index = 0; index < totalRectangles; index++) { // 2D looping since there are rows and columns
+
+function changePixels(pixels) {
+  root.style.setProperty("--grid", `${pixels}`); // set the value to the css var
+  for (let index = 0; index < pixels; index++) { // 2D looping since there are rows and columns
     const div = document.createElement("div");
     div.classList.toggle("col");
     rectangles.append(div); // while looping, append div element (row) to the rectangles div container
-    for (let j = 0; j < totalRectangles; j++) {
+    for (let j = 0; j < pixels; j++) {
       const div2 = document.createElement("div");
       div2.classList.toggle("col");
       rectangles.append(div2); // while looping, append div element (column) to the rectangles div container
     }
   }
+}
+
+// when there is change in the input element
+function changePixelsFromInput() {
+  const divs = document.querySelectorAll(".col");
+  divs.forEach((div) => { // if there are divs with .col -> remove all elements before the element got appended to the div
+    if (div) { div.remove(); } // reset div
+  });
+  totalRectangles = this.value; // each time there is change in slider, totalRectangles got re-assign
+  changePixels(totalRectangles);
+}
+
+changePixels(slider.value); // default pixels
+slider.addEventListener("change", function () {
+  changePixelsFromInput.call(this); // bring the this to changePixelsFromInput function
 });
