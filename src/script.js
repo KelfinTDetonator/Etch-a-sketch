@@ -5,6 +5,8 @@ let totalRectangles;
 // slider
 const slider = document.getElementById("rangeSize");
 const output = document.querySelectorAll(".output");
+// clear button
+const clearBtn = document.querySelector(".clear button");
 
 slider.value = 24; // base value
 
@@ -48,10 +50,10 @@ slider.addEventListener("change", function () {
 
 window.addEventListener("DOMContentLoaded", () => {
   penMode();
+  clearSketch();
 });
-
+let isActive = false;
 function penMode() {
-  let isActive = false;
   const divs = document.querySelectorAll(".col");
 
   function hoverToChangeColor() {
@@ -72,4 +74,16 @@ function penMode() {
   }
 
   window.addEventListener("click", activatePen);
+}
+
+function clearSketch() {
+  clearBtn.addEventListener("click", () => {
+    const divs = document.querySelectorAll(".col");
+    divs.forEach((div) => {
+      if (div.style.backgroundColor === "black") {
+        div.style.backgroundColor = "white";
+        isActive = true; // when clear the button, disable the pen mode
+      }
+    });
+  });
 }

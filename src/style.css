@@ -32,6 +32,10 @@ html{
     border-right: 2px solid gray;
     display: flex;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+    flex-direction: column;
 }
 
 .slider {
@@ -61,6 +65,21 @@ html{
     border-radius: 50%;
     background: black;
     cursor: pointer;
+}
+
+.clear{
+    margin-top: 2rem;
+}
+.clear button{
+    width: 7rem;
+    height: 2.5rem;
+    border-radius: 0;
+    transition: all 0.2s;
+    border-bottom: 3px solid rgba(128, 128, 128, 0.493);
+    border-right: 3px solid rgba(128, 128, 128, 0.493);
+}
+.clear button:active{
+   border: 2px solid rgba(255, 255, 255, 0.842);
 }
 
 .rectangles{
