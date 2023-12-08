@@ -42,5 +42,34 @@ function changePixelsFromInput() {
 
 changePixels(slider.value); // default pixels
 slider.addEventListener("change", function () {
-  changePixelsFromInput.call(this); // bring the this to changePixelsFromInput function
+  changePixelsFromInput.call(this); // bring the this which is slider into changePixelsFromInput function
+  penMode();
 });
+
+window.addEventListener("DOMContentLoaded", () => {
+  penMode();
+});
+
+function penMode() {
+  let isActive = false;
+  const divs = document.querySelectorAll(".col");
+
+  function hoverToChangeColor() {
+    this.style.backgroundColor = "black";
+  }
+  function activatePen() {
+    if (isActive === false) {
+      divs.forEach((div) => {
+        div.addEventListener("mouseover", hoverToChangeColor);
+      });
+      isActive = true;
+    } else {
+      divs.forEach((div) => {
+        div.removeEventListener("mouseover", hoverToChangeColor);
+      });
+      isActive = false;
+    }
+  }
+
+  window.addEventListener("click", activatePen);
+}
